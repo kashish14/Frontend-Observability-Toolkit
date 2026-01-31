@@ -1,0 +1,39 @@
+<h2 class="page-title">Overview</h2>
+<div class="grid metrics-grid">
+  <div class="card">
+    <div class="metric-value">{{ eventsSummary?.total ?? 0 }}</div>
+    <div class="metric-label">Total events</div>
+  </div>
+  <div class="card">
+    <div class="metric-value">{{ insights?.length ?? 0 }}</div>
+    <div class="metric-label">Insights</div>
+  </div>
+  <div class="card">
+    <div class="metric-value">{{ sessions?.length ?? 0 }}</div>
+    <div class="metric-label">Sessions</div>
+  </div>
+  <div class="card">
+    <div class="metric-value">{{ metrics?.length ?? 0 }}</div>
+    <div class="metric-label">Metric series</div>
+  </div>
+</div>
+<div class="card card-chart">
+  <h3 class="card-title">Performance trend (P95)</h3>
+  <div class="chart-wrap">
+    <app-line-chart [labels]="chartLabels" [datasets]="chartDatasets" />
+  </div>
+</div>
+<div class="card">
+  <h3 class="card-title">Interaction heatmap (simulated)</h3>
+  <app-heatmap-simulation />
+</div>
+<div class="card">
+  <h3 class="card-title">Recent insights</h3>
+  <ul class="insights-list">
+    <li *ngFor="let i of insights?.slice(0, 5)">
+      <span [class]="'badge badge-' + (i.severity === 'critical' ? 'critical' : i.severity === 'warning' ? 'warning' : 'info')">{{ i.severity }}</span>
+      {{ i.title }} — {{ i.description }}
+    </li>
+    <li *ngIf="!insights?.length" class="empty">No insights yet.</li>
+  </ul>
+</div>

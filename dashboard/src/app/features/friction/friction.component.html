@@ -1,0 +1,34 @@
+<h2 class="page-title">Friction metrics</h2>
+<div class="grid metrics-grid">
+  <div class="card">
+    <div class="metric-value">{{ totalFriction }}</div>
+    <div class="metric-label">Total friction events</div>
+  </div>
+  <div class="card">
+    <div class="metric-value">{{ sessionsWithFriction }}</div>
+    <div class="metric-label">Sessions with friction</div>
+  </div>
+</div>
+<div class="card">
+  <h3 class="card-title">Sessions by friction count</h3>
+  <p class="card-desc">Sessions with at least one friction event (rage click, dead click, etc.).</p>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Session ID</th>
+        <th>Route</th>
+        <th class="num">Friction count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of sessionsWithFrictionList">
+        <td><code>{{ s.sessionId }}</code></td>
+        <td>{{ s.route ?? '—' }}</td>
+        <td class="num">{{ s.frictionCount }}</td>
+      </tr>
+      <tr *ngIf="!sessionsWithFrictionList?.length">
+        <td colspan="3" class="empty">No friction in sessions.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

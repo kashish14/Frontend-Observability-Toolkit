@@ -1,0 +1,15 @@
+<div class="event-logs">
+  <h2 class="page-title">Event logs</h2>
+  <p class="page-subtitle">Observability event stream (render, clicks, friction, anomalies).</p>
+  <div class="card logs-card">
+    <div class="logs-list">
+      <div *ngFor="let log of logs" class="log-entry" [class]="'log-' + log.level">
+        <span class="log-time">{{ log.timestamp | date:'shortTime' }}</span>
+        <span class="log-level">{{ log.level }}</span>
+        <span class="log-message">{{ log.message }}</span>
+        <span *ngIf="log.context" class="log-context">{{ log.context }}</span>
+      </div>
+      <div *ngIf="!logs.length" class="log-empty">No logs yet. Navigate and interact to generate events.</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+.page-title {
+  margin: 0 0 8px 0;
+}
+
+.page-subtitle {
+  margin: 0 0 24px 0;
+  color: var(--fo-muted);
+  font-size: 0.9rem;
+}
+
+.logs-card {
+  overflow: hidden;
+}
+
+.logs-list {
+  max-height: 60vh;
+  overflow-y: auto;
+  font-family: ui-monospace, monospace;
+  font-size: 0.8rem;
+}
+
+.log-entry {
+  display: grid;
+  grid-template-columns: 70px 70px 1fr auto;
+  gap: 12px;
+  padding: 8px 12px;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+
+  &.log-error {
+    background: #ffebee;
+  }
+
+  &.log-warn {
+    background: #fff3e0;
+  }
+
+  &.log-info {
+    background: #e3f2fd;
+  }
+}
+
+.log-time {
+  color: var(--fo-muted);
+}
+
+.log-level {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.log-message {
+  word-break: break-word;
+}
+
+.log-context {
+  font-size: 0.75rem;
+  color: var(--fo-muted);
+}
+
+.log-empty {
+  padding: 24px;
+  color: var(--fo-muted);
+  text-align: center;
+}

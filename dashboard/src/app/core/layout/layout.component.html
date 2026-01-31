@@ -1,0 +1,49 @@
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <span class="sidebar-logo"></span>
+      <h2 class="sidebar-title">Observability</h2>
+    </div>
+    <nav class="sidebar-nav">
+      <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-item" (click)="sdk.trackClick('nav-dashboard')">
+        <span class="nav-icon">◉</span>
+        <span>Dashboard</span>
+      </a>
+      <a routerLink="/overview" routerLinkActive="active" class="nav-item" (click)="sdk.trackClick('nav-overview')">
+        <span class="nav-icon">▣</span>
+        <span>Overview</span>
+      </a>
+      <a routerLink="/performance" routerLinkActive="active" class="nav-item" (click)="sdk.trackClick('nav-performance')">
+        <span class="nav-icon">◈</span>
+        <span>Performance</span>
+      </a>
+      <a routerLink="/anomalies" routerLinkActive="active" class="nav-item" (click)="sdk.trackClick('nav-anomalies')">
+        <span class="nav-icon">⚠</span>
+        <span>Anomalies</span>
+      </a>
+      <a routerLink="/sessions" routerLinkActive="active" class="nav-item" (click)="sdk.trackClick('nav-sessions')">
+        <span class="nav-icon">◎</span>
+        <span>Sessions</span>
+      </a>
+      <a routerLink="/friction" routerLinkActive="active" class="nav-item" (click)="sdk.trackClick('nav-friction')">
+        <span class="nav-icon">◆</span>
+        <span>Friction</span>
+      </a>
+      <a routerLink="/logs" routerLinkActive="active" class="nav-item" (click)="sdk.trackClick('nav-logs')">
+        <span class="nav-icon">≡</span>
+        <span>Event Logs</span>
+      </a>
+    </nav>
+  </aside>
+  <div class="main-wrapper">
+    <header class="header">
+      <h1 class="header-title">Frontend Observability Toolkit</h1>
+      <div class="header-actions">
+        <span class="header-badge">Live</span>
+      </div>
+    </header>
+    <main class="main-content">
+      <router-outlet />
+    </main>
+  </div>
+</div>

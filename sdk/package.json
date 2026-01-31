@@ -1,0 +1,21 @@
+{
+  "name": "@frontend-observability/sdk",
+  "version": "1.0.0",
+  "description": "Frontend Observability SDK - render tracking, events, friction, anomalies",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "peerDependencies": {
+    "rxjs": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "jest": "^29.7.0",
+    "rxjs": "^7.8.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.3.0"
+  }
+}

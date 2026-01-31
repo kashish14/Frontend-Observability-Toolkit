@@ -1,0 +1,31 @@
+.page-title {
+  margin: 0 0 24px 0;
+}
+
+.anomalies-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  > li {
+    padding: 16px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .anomaly-detail {
+    flex: 1;
+  }
+
+  .anomaly-meta {
+    font-size: 0.875rem;
+    color: var(--fo-muted);
+  }
+
+  .empty {
+    padding: 24px;
+    color: var(--fo-muted);
+  }
+}

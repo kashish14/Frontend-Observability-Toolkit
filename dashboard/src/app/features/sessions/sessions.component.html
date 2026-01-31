@@ -1,0 +1,31 @@
+<h2 class="page-title">Session insights</h2>
+<div class="card">
+  <h3 class="card-title">Sessions</h3>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Session ID</th>
+        <th>Route</th>
+        <th class="num">Events</th>
+        <th class="num">Friction</th>
+        <th class="num">Errors</th>
+        <th class="num">LCP</th>
+        <th>Time range</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of sessions">
+        <td><code>{{ s.sessionId }}</code></td>
+        <td>{{ s.route ?? '—' }}</td>
+        <td class="num">{{ s.eventCount }}</td>
+        <td class="num">{{ s.frictionCount }}</td>
+        <td class="num">{{ s.errorCount }}</td>
+        <td class="num">{{ s.performance?.lcp != null ? (s.performance?.lcp | number:'1.0-0') + ' ms' : '—' }}</td>
+        <td>{{ s.startTime | date:'short' }} – {{ s.endTime | date:'short' }}</td>
+      </tr>
+      <tr *ngIf="!sessions?.length">
+        <td colspan="7" class="empty">No sessions.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

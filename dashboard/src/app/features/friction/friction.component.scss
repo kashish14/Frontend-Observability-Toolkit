@@ -1,0 +1,42 @@
+.page-title {
+  margin: 0 0 24px 0;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.card-desc {
+  color: var(--fo-muted);
+  margin: 0 0 16px 0;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    padding: 12px;
+  }
+
+  th {
+    text-align: left;
+    border-bottom: 2px solid #eee;
+  }
+
+  th.num, td.num {
+    text-align: right;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid #eee;
+  }
+
+  .empty {
+    padding: 24px;
+    color: var(--fo-muted);
+  }
+}

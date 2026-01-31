@@ -1,0 +1,14 @@
+.app-nav {
+  display: flex;
+  gap: 16px;
+
+  a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+  }
+}
+
+.active {
+  font-weight: 600;
+  text-decoration: underline !important;
+}

@@ -1,0 +1,33 @@
+.page-title {
+  margin: 0 0 24px 0;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.card-chart {
+  margin-bottom: 24px;
+}
+
+.chart-wrap {
+  height: 300px;
+}
+
+.insights-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .empty {
+    color: var(--fo-muted);
+  }
+}

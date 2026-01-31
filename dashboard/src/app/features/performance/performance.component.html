@@ -1,0 +1,31 @@
+<h2 class="page-title">Performance trends</h2>
+<div class="card card-table">
+  <h3 class="card-title">Metrics by type (P50 / P95 ms)</h3>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th class="num">Count</th>
+        <th class="num">P50 (ms)</th>
+        <th class="num">P95 (ms)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let m of metrics">
+        <td>{{ m.name }}</td>
+        <td class="num">{{ m.values.count }}</td>
+        <td class="num">{{ m.values.p50 | number:'1.0-0' }}</td>
+        <td class="num">{{ m.values.p95 | number:'1.0-0' }}</td>
+      </tr>
+      <tr *ngIf="!metrics?.length">
+        <td colspan="4" class="empty">No metrics.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="card">
+  <h3 class="card-title">Distribution (P95 over time)</h3>
+  <div class="chart-wrap">
+    <app-bar-chart [labels]="barLabels" [data]="barData" label="P95 (ms)" />
+  </div>
+</div>

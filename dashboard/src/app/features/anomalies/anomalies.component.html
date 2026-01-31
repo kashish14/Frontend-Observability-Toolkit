@@ -1,0 +1,17 @@
+<h2 class="page-title">Anomaly alerts</h2>
+<div class="card">
+  <h3 class="card-title">Detected anomalies</h3>
+  <ul class="anomalies-list">
+    <li *ngFor="let a of anomalies">
+      <span [class]="'badge badge-' + (a.severity === 'high' ? 'critical' : 'warning')">{{ a.severity }}</span>
+      <div class="anomaly-detail">
+        <strong>{{ a.kind }}</strong>
+        <span *ngIf="a.metric"> — {{ a.metric }}</span>
+        <span *ngIf="a.value != null"> (value: {{ a.value | number:'1.2-2' }})</span>
+        <span *ngIf="a.threshold != null"> threshold: {{ a.threshold }}</span>
+        <div class="anomaly-meta">{{ a.periodStart | date:'medium' }}</div>
+      </div>
+    </li>
+    <li *ngIf="!anomalies?.length" class="empty">No anomalies detected.</li>
+  </ul>
+</div>

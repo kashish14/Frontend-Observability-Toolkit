@@ -1,0 +1,29 @@
+<div class="dashboard-landing">
+  <h2 class="page-title">Dashboard</h2>
+  <p class="page-subtitle">Frontend observability: performance, friction, sessions, and anomalies.</p>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-value">{{ eventsTotal }}</div>
+      <div class="kpi-label">Total events</div>
+      <a routerLink="/overview" class="kpi-link">View overview →</a>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value">{{ insightsCount }}</div>
+      <div class="kpi-label">Insights</div>
+      <a routerLink="/anomalies" class="kpi-link">View anomalies →</a>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value">{{ sessionsCount }}</div>
+      <div class="kpi-label">Sessions</div>
+      <a routerLink="/sessions" class="kpi-link">View sessions →</a>
+    </div>
+  </div>
+  <div class="quick-links card">
+    <h3 class="card-title">Quick links</h3>
+    <ul class="quick-links-list">
+      <li><a routerLink="/performance">Performance trends</a></li>
+      <li><a routerLink="/friction">Friction metrics</a></li>
+      <li><a routerLink="/logs">Event logs</a></li>
+    </ul>
+  </div>
+</div>
