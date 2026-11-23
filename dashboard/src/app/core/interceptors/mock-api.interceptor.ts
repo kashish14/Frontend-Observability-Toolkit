@@ -2,9 +2,10 @@ import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Observable, of, delay, switchMap } from 'rxjs';
 import { MockBackendService } from '../services/mock-backend.service';
+import { environment } from '../../../environments/environment';
 
 export const mockApiInterceptor: HttpInterceptorFn = (req, next) => {
-  if (!req.url.startsWith('/api/')) return next(req);
+  if (!environment.enableMockBackend || !req.url.startsWith('/api/')) return next(req);
 
   const mock = inject(MockBackendService);
   let result: Observable<unknown>;
