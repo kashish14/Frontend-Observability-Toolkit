@@ -15,28 +15,30 @@ export class PerformanceTiming {
     } as any);
   }
 
-  /** Capture LCP if available (browser support). */
+  /**
+   * Capture LCP if available (browser support). LCP entries are only exposed through
+   * PerformanceObserver (not getEntriesByType), so read the buffered entries once.
+   */
   captureLCP(): void {
-    if (typeof performance !== 'undefined' && performance.getEntriesByType) {
-      const getEntries = performance.getEntriesByType as (type: string) => PerformanceEntry[];
-      try {
-        const entries = getEntries('largest-contentful-paint');
-        const last = entries[entries.length - 1];
-        if (last && 'renderTime' in last) {
-          this.trackTiming('LCP', (last as any).renderTime, 'largest-contentful-paint');
-        }
-      } catch {
-        // LCP not supported in this environment
-      }
+    if (typeof PerformanceObserver === 'undefined') return;
+    try {
+      const observer = new PerformanceObserver((list) => {
+        const last = list.getEntries().pop();
+        if (last) this.trackTiming('LCP', last.startTime, 'largest-contentful-paint');
+        observer.disconnect();
+      });
+      observer.observe({ type: 'largest-contentful-paint', buffered: true });
+    } catch {
+      // LCP not supported in this environment
     }
   }
 
   /** Capture FCP if available. */
   captureFCP(): void {
     if (typeof performance !== 'undefined' && performance.getEntriesByType) {
-      const getEntries = performance.getEntriesByType as (type: string) => PerformanceEntry[];
       try {
-        const entries = getEntries('paint');
+        // Call as a method: an unbound getEntriesByType throws "Illegal invocation" in browsers.
+        const entries = performance.getEntriesByType('paint');
         const fcp = entries.find((e) => e.name === 'first-contentful-paint');
         if (fcp) this.trackTiming('FCP', fcp.startTime, 'paint');
       } catch {

@@ -30,6 +30,8 @@ export class Transport {
   private scheduleFlush(): void {
     if (this.flushTimer) return;
     this.flushTimer = setInterval(() => this.flush(), this.config.flushIntervalMs);
+    // In Node (SSR, tests) the flush timer must not keep the process alive.
+    (this.flushTimer as { unref?: () => void }).unref?.();
   }
 
   flush(): void {
@@ -46,6 +48,7 @@ export class Transport {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ events }),
+      keepalive: true, // lets the final flush survive page unload
     });
     if (!res.ok) throw new Error(`Ingest failed: ${res.status}`);
   }

@@ -32,7 +32,7 @@ export interface UserEventPayload {
 }
 
 export interface FrictionEventPayload {
-  kind: 'rage_click' | 'dead_click' | 'scroll_thrash' | 'hesitation';
+  kind: 'rage_click' | 'dead_click' | 'scroll_thrash' | 'hesitation' | 'repeated_navigation' | 'long_loading' | 'abandoned_action';
   count?: number;
   windowMs?: number;
   target?: string;
