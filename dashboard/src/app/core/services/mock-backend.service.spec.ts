@@ -17,8 +17,8 @@ describe('MockBackendService', () => {
     service.getMetrics().subscribe((m) => {
       expect(Array.isArray(m)).toBe(true);
       expect(m.length).toBeGreaterThan(0);
-      expect(m[0]).toHaveProperty('name');
-      expect(m[0]).toHaveProperty('values');
+      expect(m[0].name).toBeDefined();
+      expect(m[0].values).toBeDefined();
       done();
     });
   });
@@ -27,7 +27,7 @@ describe('MockBackendService', () => {
     service.getSessions().subscribe((s) => {
       expect(Array.isArray(s)).toBe(true);
       expect(s.length).toBeGreaterThan(0);
-      expect(s[0]).toHaveProperty('sessionId');
+      expect(s[0].sessionId).toBeDefined();
       done();
     });
   });

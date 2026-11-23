@@ -1,18 +1,29 @@
 /**
- * Performance test: SDK overhead (conceptual).
- * In a full setup you would measure LCP/CPU with and without SDK in a browser.
- * Here we assert that key operations complete within a reasonable time budget.
+ * SDK overhead sanity check: tracking events (context + queue + stream) must stay cheap.
+ * Browser-level LCP/CPU benchmarks are out of scope for this suite.
  */
-describe('SDK overhead (unit)', () => {
-  it('emit + stream subscription completes in < 5ms per event (sanity)', () => {
+import { ObservabilitySDK } from '@frontend-observability/sdk';
+
+describe('SDK overhead', () => {
+  const realFetch = global.fetch;
+  beforeAll(() => {
+    global.fetch = (() => Promise.resolve(new Response(null, { status: 202 }))) as typeof fetch;
+  });
+  afterAll(() => {
+    global.fetch = realFetch;
+  });
+
+  it('tracks 1,000 events in under 100ms', () => {
+    const sdk = ObservabilitySDK.init({ endpoint: 'http://localhost/api/events', batchSize: 100, flushIntervalMs: 60_000 });
+    let streamed = 0;
+    sdk.getMetrics$().subscribe(() => streamed++);
+
     const start = performance.now();
-    let count = 0;
-    const { Subject } = require('rxjs');
-    const sub = new Subject();
-    sub.subscribe(() => count++);
-    for (let i = 0; i < 100; i++) sub.next({ type: 'test', timestamp: Date.now(), payload: {}, context: {} });
+    for (let i = 0; i < 1000; i++) sdk.trackEvent('click', { target: `button-${i}` });
     const elapsed = performance.now() - start;
-    expect(count).toBe(100);
-    expect(elapsed).toBeLessThan(50); // 100 events in 50ms => < 0.5ms per event
+
+    sdk.destroy();
+    expect(streamed).toBe(1000);
+    expect(elapsed).toBeLessThan(100);
   });
 });
