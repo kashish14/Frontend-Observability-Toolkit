@@ -88,10 +88,9 @@ frontend-observability-toolkit/
 
 ## Build and Run Order
 
-1. **Install:** From repo root, `npm install` (if using workspaces) or install each module.
-2. **Backend:** `npm run start:backend` (or `node mock-backend`) — ingest + analytics + visualization API.
-3. **Dashboard:** `npm run start:dashboard` (or `ng serve` in dashboard/) — Angular app.
-4. **Instrumented app:** In a separate Angular app, install and initialize the SDK; point config to mock-backend URL; generate traffic.
-5. **Tests:** `npm test` from root or per module (unit + integration + performance as implemented).
+1. **Install:** `npm install` from the repo root (npm workspaces). A `postinstall` step builds `sdk` and `analytics-engine` so their `dist/` output exists for the packages that import them.
+2. **Full stack:** `npm run dev` builds the mock backend, then runs it together with the dashboard in live mode. The dashboard itself is instrumented with the SDK, so browsing it generates events.
+3. **Dashboard only:** `npm start` serves the dashboard with in-app demo data (no backend).
+4. **Tests:** `npm test` from root, or `npm run test --workspace=<name>`.
 
 This structure keeps concerns separated, supports incremental development, and allows the mock backend and analytics engine to be replaced by production services without changing SDK or dashboard contracts.

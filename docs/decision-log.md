@@ -51,7 +51,7 @@ This log records material technical and product decisions, trade-offs, and ratio
 **Decision:** Ship the analytics engine as a Node.js module that can run in the same process as the mock backend (or as a separate service) with the same interface.
 
 **Rationale:**
-- Simplifies local and demo setup: one `npm run backend` for ingest + analytics.
+- Simplifies local and demo setup: one `npm run start:backend` for ingest + analytics.
 - Same code path can be deployed as a separate microservice when scaling.
 - Clear API boundary (HTTP or internal calls) so swapping deployment topology does not change SDK or dashboard.
 
@@ -124,9 +124,9 @@ This log records material technical and product decisions, trade-offs, and ratio
 
 ---
 
-## 10. Chart Library: ng2-charts (Chart.js) or Similar
+## 10. Chart Library: Chart.js
 
-**Decision:** Use a well-supported charting library that integrates with Angular (e.g. ng2-charts/Chart.js) for the dashboard’s performance trends, funnel, and distribution charts.
+**Decision:** Use a well-supported charting library that works with Angular: Chart.js, wrapped in two small standalone components (line and bar) for the performance trend and distribution charts.
 
 **Rationale:**
 - Reduces custom canvas/SVG work and maintains accessibility and responsiveness.

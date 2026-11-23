@@ -94,4 +94,4 @@ Without frontend-specific instrumentation, teams rely on guesswork, synthetic te
 
 ## Summary
 
-Frontend Observability Toolkit addresses the **visibility gap** for frontend systems by providing a **documentation-first**, **modular**, and **production-grade** stack: SDK → Analytics Engine → Dashboard. It serves **frontend engineers**, **product/UX**, and **platform/SRE** with clear value: **know how your UI performs, where users struggle, and when things break—with minimal friction and strong privacy controls.**
+Frontend Observability Toolkit addresses the **visibility gap** for frontend systems by providing a **documentation-first**, and **modular** stack: SDK → Analytics Engine → Dashboard. It serves **frontend engineers**, **product/UX**, and **platform/SRE** with clear value: **know how your UI performs, where users struggle, and when things break—with minimal friction and strong privacy controls.**
