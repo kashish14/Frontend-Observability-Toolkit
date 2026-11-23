@@ -107,3 +107,45 @@
   background: var(--fo-bg, #f5f5f5);
   overflow: auto;
 }
+
+.header-badge--demo {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+@media (max-width: 768px) {
+  .app-shell {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .sidebar-brand {
+    padding: 12px 16px;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    overflow-x: auto;
+    padding: 0 8px;
+  }
+
+  .nav-item {
+    padding: 10px 12px;
+    white-space: nowrap;
+  }
+
+  .header {
+    padding: 0 16px;
+  }
+
+  .header-title {
+    font-size: 1rem;
+  }
+
+  .main-content {
+    padding: 16px;
+  }
+}

@@ -16,7 +16,7 @@ export function generateInsights(
       type: 'anomaly',
       title: a.metric ? `${a.metric} anomaly` : a.kind,
       description: a.value != null && a.threshold != null
-        ? `Value ${a.value} exceeded threshold ${a.threshold}`
+        ? `Value ${+a.value.toFixed(2)} exceeded threshold ${a.threshold}`
         : `Anomaly detected: ${a.kind}`,
       periodStart: a.periodStart,
       severity: a.severity === 'high' ? 'critical' : a.severity === 'medium' ? 'warning' : 'info',

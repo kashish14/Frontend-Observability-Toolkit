@@ -19,7 +19,7 @@ export class PerformanceComponent implements OnInit {
 
   ngOnInit(): void {
     this.api.getMetrics().subscribe((m) => {
-      this.metrics = m;
+      this.metrics = [...(m ?? [])].sort((a, b) => a.name.localeCompare(b.name) || a.periodStart - b.periodStart);
       const sorted = [...(m ?? [])].sort((a, b) => a.periodStart - b.periodStart);
       this.barLabels = sorted.map((x) => `${x.name} @ ${new Date(x.periodStart).toLocaleTimeString()}`);
       this.barData = sorted.map((x) => x.values.p95);

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ObservabilitySdkService } from '../services/observability-sdk.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-layout',
@@ -11,7 +12,9 @@ import { ObservabilitySdkService } from '../services/observability-sdk.service';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent {
-  constructor(public sdk: ObservabilitySdkService) {
-    // Initialize SDK (render tracking, navigation, friction) when layout loads
-  }
+  /** True when API calls are answered by the in-app mock instead of the backend. */
+  readonly demoMode = environment.enableMockBackend;
+
+  // Injecting the service starts navigation, click and friction tracking.
+  constructor(public sdk: ObservabilitySdkService) {}
 }

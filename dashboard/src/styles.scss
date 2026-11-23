@@ -73,3 +73,8 @@ body {
 .badge-warning { background: #fff3e0; color: #e65100; }
 .badge-critical { background: #ffebee; color: #c62828; }
 .badge-info { background: #e3f2fd; color: #1565c0; }
+
+/* Wide tables scroll inside their card on small screens. */
+.card {
+  overflow-x: auto;
+}

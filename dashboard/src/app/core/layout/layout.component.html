@@ -39,7 +39,7 @@
     <header class="header">
       <h1 class="header-title">Frontend Observability Toolkit</h1>
       <div class="header-actions">
-        <span class="header-badge">Live</span>
+        <span class="header-badge" [class.header-badge--demo]="demoMode">{{ demoMode ? 'Demo data' : 'Live API' }}</span>
       </div>
     </header>
     <main class="main-content">

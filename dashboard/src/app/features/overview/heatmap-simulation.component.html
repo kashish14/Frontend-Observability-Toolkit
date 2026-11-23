@@ -1,5 +1,4 @@
 <div class="heatmap">
-  <h4 class="heatmap-title">Interaction heatmap (simulated)</h4>
   <div class="heatmap-grid">
     <div *ngFor="let row of cells; let r = index" class="heatmap-row">
       <div *ngFor="let val of row; let c = index" class="heatmap-cell" [style.opacity]="0.2 + val * 0.8"></div>
