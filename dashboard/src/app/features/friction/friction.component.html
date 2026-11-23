@@ -26,7 +26,7 @@
         <td>{{ s.route ?? '—' }}</td>
         <td class="num">{{ s.frictionCount }}</td>
       </tr>
-      <tr *ngIf="!sessionsWithFrictionList?.length">
+      <tr *ngIf="!sessionsWithFrictionList.length">
         <td colspan="3" class="empty">No friction in sessions.</td>
       </tr>
     </tbody>

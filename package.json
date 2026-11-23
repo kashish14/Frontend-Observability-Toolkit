@@ -2,18 +2,18 @@
   "name": "frontend-observability-toolkit",
   "version": "1.0.0",
   "private": true,
-  "description": "Production-grade frontend observability: SDK, analytics engine, and dashboard",
+  "description": "Frontend observability toolkit: TypeScript SDK, analytics engine, mock ingest API and Angular dashboard",
   "scripts": {
-    "build": "npm run build:sdk && npm run build:analytics && npm run build:backend && npm run build:dashboard",
-    "build:sdk": "npm run build --workspace=sdk",
-    "build:analytics": "npm run build --workspace=analytics-engine",
+    "postinstall": "npm run build:libs",
+    "dev": "npm run build:backend && concurrently -k -n api,web -c blue,magenta \"npm:start:backend\" \"npm:start:live\"",
+    "start": "npm run start --workspace=dashboard",
+    "start:live": "npm run start:live --workspace=dashboard",
+    "start:backend": "npm run start --workspace=mock-backend",
+    "build": "npm run build:libs && npm run build:backend && npm run build:dashboard",
+    "build:libs": "npm run build --workspace=sdk --workspace=analytics-engine",
     "build:backend": "npm run build --workspace=mock-backend",
     "build:dashboard": "npm run build --workspace=dashboard",
-    "start:backend": "npm run start --workspace=mock-backend",
-    "start:dashboard": "npm run start --workspace=dashboard",
-    "test": "npm run test --workspaces --if-present",
-    "test:sdk": "npm run test --workspace=sdk",
-    "test:integration": "npm run test --workspace=tests"
+    "test": "npm run test --workspaces --if-present"
   },
   "workspaces": [
     "sdk",
@@ -23,19 +23,9 @@
     "tests"
   ],
   "engines": {
-    "node": ">=18.0.0"
-  },
-  "overrides": {
-    "@angular/animations": "17.3.12",
-    "@angular/common": "17.3.12",
-    "@angular/compiler": "17.3.12",
-    "@angular/core": "17.3.12",
-    "@angular/forms": "17.3.12",
-    "@angular/platform-browser": "17.3.12",
-    "@angular/platform-browser-dynamic": "17.3.12",
-    "@angular/router": "17.3.12"
+    "node": ">=20.19"
   },
   "devDependencies": {
-    "@angular/compiler": "17.3.12"
+    "concurrently": "^9.2.5"
   }
 }
